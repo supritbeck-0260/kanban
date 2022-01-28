@@ -1,0 +1,20 @@
+.custom-modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(255,255,255,0.5);
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+}
+.custom-modal .container{
+    width: fit-content;
+    height: fit-content;
+    position: absolute;
+    border: 2px solid gray;
+    background: teal;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
