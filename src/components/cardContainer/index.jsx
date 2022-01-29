@@ -9,8 +9,9 @@ export default function CardContainer({type,task,cardClickHander}) {
         <div className='h3 bg-primary col-12'>{type}</div>
         <div className="col-12">
         {
-            task.filter((elem)=>elem.status == type).map(elem=><Card key={elem.id} data={elem} cardClickHander={cardClickHander}/>)
-          }
+            task.filter((elem)=>elem.status == type)
+            .map(elem=><Card key={elem.id} data={elem} cardClickHander={cardClickHander}/>)
+        }
         </div>
       </div>
       </div>

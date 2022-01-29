@@ -1,10 +1,13 @@
-import React , {useState} from 'react';
+import React , {lazy, Suspense, useState} from 'react';
 import CardContainer from '../cardContainer';
-import Modal from '../modal';
 import tasksData from '../../data';
+import './mainContainer.css';
+import { keys, STORAGE } from '../../data/keys';
+import { useSessionStorage } from '../../customHooks/useSessionStorage';
 export default function MainContainer() {
-  const [task,setTask] = useState(tasksData);
+  const [task,setTask] = useSessionStorage(STORAGE,tasksData);
   const [data,setData] = useState(null);
+  const Modal = lazy(()=>import(/* webpackChunkName:"Modal"*/'../modal'))
   const cardClickHander =(data)=>{
     setData(data)
   }
@@ -20,10 +23,15 @@ export default function MainContainer() {
   return (
   <>
   <div className="row mx-0">
-      <CardContainer type="backlog" task={task} cardClickHander={cardClickHander}/>
-      <CardContainer type="inprogress"  task={task} cardClickHander={cardClickHander}/>
-      <CardContainer type="done"  task={task} cardClickHander={cardClickHander}/>
+    {
+      keys.map((elem)=><CardContainer key={elem} type={elem} task={task} cardClickHander={cardClickHander}/>)
+    }
+     
 </div>
-{data && <Modal close={()=>setData(null)} data={data} updateData={updateData}/>}
+{data && 
+<Suspense fallback={<div className='fallback'>Loading...</div>}>
+<Modal close={()=>setData(null)} data={data} updateData={updateData}/>
+</Suspense>
+}
   </>);
 }

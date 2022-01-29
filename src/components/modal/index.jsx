@@ -28,8 +28,7 @@ export default function Modal({data,updateData,close}) {
                 <div className="col-12 p-3">
                 <input type="text" placeholder='description' value={desc} onChange={(e)=>setDesc(e.target.value)}/>
                 </div>
-              
-                {/* <input type="date" placeholder='date' date={date} onChange={(e)=>setDate(e.target.value)}/> */}
+            
                 <div className="col-12 p-3">
                 <DatePicker selected={date} onChange={(date) => setDate(date)} />
                 </div>
