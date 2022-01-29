@@ -1,7 +1,9 @@
 import React from 'react';
 import Card from '../card';
+import { useTask } from '../mainContainer';
 
-export default function CardContainer({type,task,cardClickHander}) {
+export default function CardContainer({type}) {
+  const [task] = useTask()
   return(
       <>
       <div className="col-4">
@@ -10,7 +12,7 @@ export default function CardContainer({type,task,cardClickHander}) {
         <div className="col-12">
         {
             task.filter((elem)=>elem.status == type)
-            .map(elem=><Card key={elem.id} data={elem} cardClickHander={cardClickHander}/>)
+            .map(elem=><Card key={elem.id} data={elem}/>)
         }
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTask } from '../mainContainer';
 
-export default function Card({data,cardClickHander}) {
+export default function Card({data}) {
+    const [,cardClickHander] = useTask();
     const {title,desc,date,status} = data ?? {};
   return(
       <>
